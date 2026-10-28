@@ -1,0 +1,16 @@
+services:
+  go:
+    build: ./services/go
+  python:
+    build: ./services/python
+  node:
+    build: ./services/node
+  rust:
+    build: ./services/rust
+  web:
+    build: ./services/web
+    environment:
+      HUE_SERVICES: go,python,node,rust
+    ports:
+      - "8080:8080"
+    depends_on: [go, python, node, rust]
